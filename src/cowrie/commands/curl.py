@@ -243,6 +243,11 @@ class Command_curl(HoneyPotCommand):
                 self.exit()
                 return
 
+        if CowrieConfig.getboolean("shell", "allow_networking", fallback=True) is False:
+            self.errorWrite("Unrecognized option\n")
+            self.exit()
+            return
+
         url = url.encode("ascii")
         self.url = url
 
